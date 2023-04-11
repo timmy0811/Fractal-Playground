@@ -1,0 +1,5 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: Das Zwischenverzeichnis (x64\Debug\) enthält freigegebene Dateien aus einem anderen Projekt (OpenGL-Learning.vcxproj, Template.vcxproj). Dies kann zu einem falschen Bereinigungs- und Neuerstellungsverhalten führen.
+  Application.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: "APIENTRY": Makro-Neudefinition
+D:\Git\GLSL-Shader-Template\Dependencies\glfw\include\GLFW\glfw3.h(123): message : Siehe vorherige Definition von "APIENTRY"
+  OpenGL-Learning.vcxproj -> D:\Git\GLSL-Shader-Template\x64\Debug\Raymarcher.exe
