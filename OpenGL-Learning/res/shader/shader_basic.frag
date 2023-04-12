@@ -16,6 +16,9 @@ uniform float u_PowInv;
 uniform float u_Pow;
 uniform float u_Zoom;
 uniform int u_Iterations;
+uniform float u_Unknown;
+uniform vec2 u_CPos;
+uniform float u_Universal;
 
 vec2 distanceToMandelbrot( vec2 c )
 {
@@ -30,14 +33,14 @@ vec2 distanceToMandelbrot( vec2 c )
     #endif
 
     // iterate
-    float di =  u_DI;
+    float di =  0.0;
     vec2 z  = vec2(0.0);
-    float m2 = u_M2;
+    float m2 = 0.0;
     vec2 dz = vec2(0.0);
     float iter = u_Iterations;
     for( int i=0; i<u_Iterations; i++ )
     {
-        if( m2>u_Resolution.x ) { 
+        if( m2>u_Unknown ) { 
             di=0.0; 
             iter = float(i);
             break; 
@@ -58,6 +61,21 @@ vec2 distanceToMandelbrot( vec2 c )
     if( di>0.5 ) d=0.0;
 	
     return vec2(d, iter);
+}
+
+vec2 distanceToJulia(vec2 z){
+    vec2 c = vec2(u_Universal);
+    int i;
+    for (i=0; i<u_Iterations; i++) {
+        float x = (z.x * z.x - z.y * z.y) + c.x;
+        float y = (z.x * z.y + z.x * z.y) + c.y;
+
+        if ((x * x + y * y) > 10.0) break;
+        z.x = x;
+        z.y = y;
+    }
+
+    return vec2(0.0, i);
 }
 
 vec3 hsv2rgb(vec3 hsv) {
@@ -89,20 +107,20 @@ vec3 hsv2rgb(vec3 hsv) {
 }
 
 void main(){
-    vec2 frag_Coord = vec2(gl_FragCoord.x / u_Resolution.x, gl_FragCoord.y / u_Resolution.y);
+    vec2 frag_Coord = vec2(gl_FragCoord.x / u_Resolution.x, gl_FragCoord.y / u_Resolution.y) * 2.0 - 1.0 + u_CPos;
 
     float tz = 0.05 * u_Zoom;
     float zoo = pow(0.5, 13.0 * tz);
 	vec2 c = vec2(-0.05, 0.6805) + frag_Coord * zoo;
 
-    vec2 distToMb = distanceToMandelbrot(c);
-    vec3 color = vec3(pow(u_PowInv * distToMb.x / zoo, u_Pow));
+    vec2 distToMb = distanceToJulia(c);
+    // vec3 color = vec3(pow(u_PowInv * distToMb.x / zoo, u_Pow));
 
     float hue = distToMb.y / u_Iterations;
-    float saturation = 1.;
+    float saturation = 1.0;
     float value = distToMb.y < u_Iterations ? 1.0 : 0.0;
     vec3 hsvVal = vec3(hue, saturation, value);
-    color = hsv2rgb(hsvVal);
+    vec3 color = hsv2rgb(hsvVal);
     color = pow(color, vec3(0.4545));
     
     o_Color = vec4(color, 1.0);

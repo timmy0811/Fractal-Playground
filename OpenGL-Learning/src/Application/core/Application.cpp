@@ -169,6 +169,10 @@ void ApplicationNamespace::Application::OnUpdate()
 
 	m_ShaderBasic->SetUniform1f("u_Zoom", u_Zoom);
 	m_ShaderBasic->SetUniform1i("u_Iterations", u_Iterations);
+
+	m_ShaderBasic->SetUniform1f("u_Unknown", u_Unknown);
+	m_ShaderBasic->SetUniform2f("u_CPos", u_CPos.x, u_CPos.y);
+	m_ShaderBasic->SetUniform1f("u_Universal", u_Universal);
 }
 
 void ApplicationNamespace::Application::GUI(GLFWwindow* window)
@@ -193,13 +197,16 @@ void ApplicationNamespace::Application::GUI(GLFWwindow* window)
 
 	if (ImGui::CollapsingHeader("World", ImGuiTreeNodeFlags_DefaultOpen)) {
 		ImGui::Text("Mandelbrot Fractal");
-		ImGui::SliderFloat("di", &u_DI, 0.01, 10.0);
+		ImGui::SliderFloat("di", &u_DI, -10.01, 10.0);
 		ImGui::SliderFloat("m2", &u_M2, 0.01, 10.0);
 
 		ImGui::SliderFloat("Pow", &u_Pow, 0.001, 10.0);
 		ImGui::SliderFloat("Factor", &u_PowInv, 0.0, 1.0);
 		ImGui::SliderFloat("Zoom", &u_Zoom, -32.0, 32.0);
 		ImGui::SliderInt("Iterations", &u_Iterations, 32, 1028);
+		ImGui::SliderFloat("u_Unknown", &u_Unknown, 2, 512);
+		ImGui::SliderFloat2("u_CPos", &u_CPos.x, -2.f, 2.f);
+		ImGui::SliderFloat("u_Universal", &u_Universal, 0.34, 0.355f);
 	}
 
 	ImGui::PopStyleColor(2);

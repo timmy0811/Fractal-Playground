@@ -59,6 +59,10 @@ namespace ApplicationNamespace {
 		float u_Zoom = 0.0;
 
 		int u_Iterations = 300;
+		float u_Unknown = 32.f;
+
+		glm::vec2 u_CPos;
+		float u_Universal = 0.34f;
 
 		// Input
 		bool m_IsInViewMode;

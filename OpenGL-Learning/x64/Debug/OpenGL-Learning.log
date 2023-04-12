@@ -3,7 +3,14 @@
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: "APIENTRY": Makro-Neudefinition
 D:\Git\Fractal-Playground\Dependencies\glfw\include\GLFW\glfw3.h(123): message : Siehe vorherige Definition von "APIENTRY"
 D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.h(58,15): warning C4305: "Initialisierung": Verkürzung von "double" in "float"
-D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(196,45): warning C4305: "Argument": Verkürzung von "double" in "float"
-D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(197,45): warning C4305: "Argument": Verkürzung von "double" in "float"
-D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(199,48): warning C4305: "Argument": Verkürzung von "double" in "float"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(200,47): warning C4305: "Argument": Verkürzung von "double" in "float"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(201,45): warning C4305: "Argument": Verkürzung von "double" in "float"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(203,48): warning C4305: "Argument": Verkürzung von "double" in "float"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.cpp(209,63): warning C4305: "Argument": Verkürzung von "double" in "float"
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: "APIENTRY": Makro-Neudefinition
+D:\Git\Fractal-Playground\Dependencies\glfw\include\GLFW\glfw3.h(123): message : Siehe vorherige Definition von "APIENTRY"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\Application\core\Application.h(58,15): warning C4305: "Initialisierung": Verkürzung von "double" in "float"
+D:\Git\Fractal-Playground\OpenGL-Learning\src\main.cpp(86,37): warning C4244: "Argument": Konvertierung von "double" in "float", möglicher Datenverlust
+  Code wird generiert...
   OpenGL-Learning.vcxproj -> D:\Git\Fractal-Playground\x64\Debug\Raymarcher.exe
