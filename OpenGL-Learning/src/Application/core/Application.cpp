@@ -156,11 +156,19 @@ void ApplicationNamespace::Application::OnUpdate()
 	m_ApplicationTime = (float)glfwGetTime();
 	m_ShaderBasic->Bind();
 	m_ShaderBasic->SetUniform1f("u_Time", m_ApplicationTime);
-	m_ShaderBasic->SetUniform3f("u_CameraOrigin", m_Camera.Position.x, m_Camera.Position.y, m_Camera.Position.z);
 	m_ShaderBasic->SetUniform2f("u_Mouse", (float)s_MouseX, (float)s_MouseY);
 
 	m_ShaderBasic->SetUniformMat4f("u_InverseView", glm::inverse(m_MatView));
 	m_ShaderBasic->SetUniformMat4f("u_InverseProjection", glm::inverse(m_MatProjectionRay));
+
+	m_ShaderBasic->SetUniform1f("u_DI", u_DI);
+	m_ShaderBasic->SetUniform1f("u_M2", u_M2);
+
+	m_ShaderBasic->SetUniform1f("u_Pow", u_Pow);
+	m_ShaderBasic->SetUniform1f("u_PowInv", u_PowInv);
+
+	m_ShaderBasic->SetUniform1f("u_Zoom", u_Zoom);
+	m_ShaderBasic->SetUniform1i("u_Iterations", u_Iterations);
 }
 
 void ApplicationNamespace::Application::GUI(GLFWwindow* window)
@@ -184,7 +192,14 @@ void ApplicationNamespace::Application::GUI(GLFWwindow* window)
 	}
 
 	if (ImGui::CollapsingHeader("World", ImGuiTreeNodeFlags_DefaultOpen)) {
-		ImGui::Text("Sampletext");
+		ImGui::Text("Mandelbrot Fractal");
+		ImGui::SliderFloat("di", &u_DI, 0.01, 10.0);
+		ImGui::SliderFloat("m2", &u_M2, 0.01, 10.0);
+
+		ImGui::SliderFloat("Pow", &u_Pow, 0.001, 10.0);
+		ImGui::SliderFloat("Factor", &u_PowInv, 0.0, 1.0);
+		ImGui::SliderFloat("Zoom", &u_Zoom, -32.0, 32.0);
+		ImGui::SliderInt("Iterations", &u_Iterations, 32, 1028);
 	}
 
 	ImGui::PopStyleColor(2);

@@ -50,6 +50,16 @@ namespace ApplicationNamespace {
 
 		float m_ApplicationTime = 0.f;
 
+		// Uniforms
+		float u_M2 = 1.0;
+		float u_DI = 1.0;
+
+		float u_PowInv = 4.0;
+		float u_Pow = 0.2;
+		float u_Zoom = 0.0;
+
+		int u_Iterations = 300;
+
 		// Input
 		bool m_IsInViewMode;
 		inline static float m_CameraSpeed;
