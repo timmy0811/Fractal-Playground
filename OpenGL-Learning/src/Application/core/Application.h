@@ -51,16 +51,13 @@ namespace ApplicationNamespace {
 		float m_ApplicationTime = 0.f;
 
 		// Uniforms
-		float u_M2 = 1.0;
-		float u_DI = 1.0;
 
-		float u_PowInv = 4.0;
-		float u_Pow = 0.2;
 		float u_Zoom = 0.0;
 
 		int u_Iterations = 300;
 		float u_Unknown = 32.f;
 
+		glm::vec2 u_ZoomCoord;
 		glm::vec2 u_CPos;
 		float u_Universal = 0.34f;
 

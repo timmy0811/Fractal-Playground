@@ -19,10 +19,11 @@ uniform int u_Iterations;
 uniform float u_Unknown;
 uniform vec2 u_CPos;
 uniform float u_Universal;
+uniform vec2 u_ZoomCoord;
 
 vec2 distanceToMandelbrot( vec2 c )
 {
-    #if 1
+    #if 0
     {
         float c2 = dot(c, c);
         // skip computation inside M1 - https://iquilezles.org/articles/mset1bulb
@@ -107,13 +108,15 @@ vec3 hsv2rgb(vec3 hsv) {
 }
 
 void main(){
-    vec2 frag_Coord = vec2(gl_FragCoord.x / u_Resolution.x, gl_FragCoord.y / u_Resolution.y) * 2.0 - 1.0 + u_CPos;
+    vec2 frag_Coord = vec2(gl_FragCoord.x / u_Resolution.x, gl_FragCoord.y / u_Resolution.y) * 2.0 - 1.0;
+    frag_Coord.x *= u_Resolution.x / u_Resolution.y;
+    frag_Coord += u_CPos;
 
     float tz = 0.05 * u_Zoom;
     float zoo = pow(0.5, 13.0 * tz);
-	vec2 c = vec2(-0.05, 0.6805) + frag_Coord * zoo;
+	vec2 c = u_ZoomCoord + frag_Coord * zoo;
 
-    vec2 distToMb = distanceToJulia(c);
+    vec2 distToMb = distanceToMandelbrot(c);
     // vec3 color = vec3(pow(u_PowInv * distToMb.x / zoo, u_Pow));
 
     float hue = distToMb.y / u_Iterations;
